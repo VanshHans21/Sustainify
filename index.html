@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sustainify — Find Sustainable Alternatives</title>
+  <meta name="description" content="Search sustainable alternatives to everyday products. Filter by category, score, and bookmark your favorites." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo"><img src="assets/img/leaf.svg" alt="Logo" class="icon"></div>
+        <div class="title">Sustainify </div>
+      </div>
+      <nav style="display:flex; gap:14px">
+        <a class="toggle tooltip" data-tip="Tips for better searching" href="#tips">Tips</a>
+        <a class="toggle tooltip" data-tip="About this project" href="#about">About</a>
+        <button id="bookmark-toggle" class="toggle">All Items</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="search-card fade-in">
+      <div class="search-bar">
+        <img class="icon" src="assets/img/leaf.svg" alt="">
+        <input id="q" type="text" placeholder="Search sustainable alternatives… e.g., toothbrush, razor, bottle" autocomplete="off" />
+        <select id="sort" class="select" aria-label="Sort results">
+          <option value="score-desc" >Top Score</option>
+          <option value="score-asc">Score (Low to High)</option>
+          <option value="name-asc">Name A→Z</option>
+          <option value="name-desc">Name Z→A</option>
+        </select>
+      </div>
+      <div id="chip-wrap" class="filters" aria-label="Categories"></div>
+      <div class="controls">
+        <span class="tooltip" data-tip="Bookmark items to save them locally">Bookmarks are saved in your browser</span>
+      </div>
+    </section>
+
+    <section id="grid" class="grid" aria-live="polite"></section>
+
+    <section id="tips" class="fade-in" style="margin: 30px 0;">
+      <h2>Search Tips</h2>
+      <ul>
+        <li>Try product names (<b>razor</b>, <b>toothbrush</b>, <b>bottle</b>).</li>
+        <li>Use categories like <b>Home</b>, <b>Electronics</b>, <b>Kitchen</b>, <b>Lifestyle</b>.</li>
+        <li>Filter by score to see the best options first.</li>
+      </ul>
+    </section>
+
+    <section id="about" class="fade-in" style="margin: 30px 0;">
+      <h2>About Sustainify</h2>
+      <p>This project, Sustainify, is developed as a part of my semester minor project. The aim of this website is to help people discover sustainable alternatives to everyday products that are commonly harmful to the environment.
+
+Our world is facing serious issues like plastic pollution, excessive waste, and overuse of non-renewable resources. Through this website, users can easily search and explore eco-friendly products such as reusable bottles, bamboo toothbrushes, cloth bags, and many more.
+
+The website is designed with a user-friendly interface, smooth transitions, and a clean layout to provide a good browsing experience. JavaScript dynamically handles product cards, searching, and bookmarking features.
+
+This project demonstrates how web development and technology can be used for promoting sustainability and spreading environmental awareness.</p>
+    </section>
+  </main>
+
+  <div id="modal" style="display:none; opacity:1; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9);">
+    <div style="position:absolute; inset: 0; display:grid; place-items:center; padding: 16px;">
+      <div style="width:min(860px,96%); background: var(--panel); border:1px solid var(--panel-strong); border-radius: var(--radius-xl); box-shadow: var(--shadow); overflow:hidden;">
+        <div style="display:flex; align-items:center; justify-content:space-between; padding: 12px 16px; border-bottom: 1px solid var(--panel-strong)">
+          <div class="title">Details</div>
+          <button id="close-modal" class="btn">Close</button>
+        </div>
+        <div id="modal-body" style="padding: 16px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div id="compare-wrap" style="position:sticky; bottom:0; z-index:40; background: linear-gradient(180deg, rgba(11,18,32,0), rgba(11,18,32,0.9)); padding: 12px 0; border-top:1px solid var(--panel-strong);">
+    <div class="container">
+      <div id="compare-bar" class="controls" style="display:none"></div>
+    </div>
+  </div> -->
+
+  <footer class="footer">
+    Built with ❤️ for sustainability explorers by: Vansh Hans
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

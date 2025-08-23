@@ -1,0 +1,316 @@
+[
+  {
+    "id": "p001",
+    "name": "Bamboo Toothbrush",
+    "category": "Personal Care",
+    "tags": [
+      "toothbrush",
+      "bamboo",
+      "plastic-free",
+      "compostable"
+    ],
+    "replaces": "Plastic Toothbrush",
+    "materials": [
+      "Moso bamboo handle",
+      "Biobased bristles"
+    ],
+    "certifications": [
+      "FSC Sourced Bamboo"
+    ],
+    "impact": {
+      "co2": 0.35,
+      "water": 120,
+      "waste": 1.0
+    },
+    "score": 90,
+    "description": "Compostable handle with soft plant-based bristles. Switch from plastic to bamboo for a lower-waste brush.",
+    "links": [
+      {
+        "label": "Learn care tips",
+        "url": "#"
+      },
+      {
+        "label": "How to compost",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "p002",
+    "name": "Refillable Hand Soap",
+    "category": "Home",
+    "tags": [
+      "refill",
+      "concentrate",
+      "hand soap"
+    ],
+    "replaces": "Single-use Soap Bottles",
+    "materials": [
+      "Reusable glass bottle",
+      "Plant-based concentrate"
+    ],
+    "certifications": [
+      "Leaping Bunny Cruelty-Free"
+    ],
+    "impact": {
+      "co2": 0.6,
+      "water": 80,
+      "waste": 30
+    },
+    "score": 86,
+    "description": "Use a durable dispenser and add water to a plant-based concentrate. Cuts plastic and shipping emissions.",
+    "links": [
+      {
+        "label": "Why concentrates",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "p003",
+    "name": "Safety Razor",
+    "category": "Personal Care",
+    "tags": [
+      "metal",
+      "reusable",
+      "razor"
+    ],
+    "replaces": "Disposable Cartridge Razor",
+    "materials": [
+      "Stainless steel",
+      "Recyclable blades"
+    ],
+    "certifications": [
+      "Plastic-Free Packaging"
+    ],
+    "impact": {
+      "co2": 1.2,
+      "water": 20,
+      "waste": 80
+    },
+    "score": 88,
+    "description": "A durable metal handle with replaceable steel blades. Lower waste and long-term savings.",
+    "links": [
+      {
+        "label": "Beginner guide",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "p004",
+    "name": "Compostable Trash Bags",
+    "category": "Home",
+    "tags": [
+      "compostable",
+      "bags",
+      "PLA",
+      "PBAT"
+    ],
+    "replaces": "Conventional Plastic Bags",
+    "materials": [
+      "PLA/PBAT biopolymers"
+    ],
+    "certifications": [
+      "EN 13432 Industrial Compostable"
+    ],
+    "impact": {
+      "co2": 0.2,
+      "water": 10,
+      "waste": 15
+    },
+    "score": 74,
+    "description": "Use for organic waste in regions with compost collection. Keeps food scraps out of landfill.",
+    "links": [
+      {
+        "label": "Check local rules",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "p005",
+    "name": "LED Bulb (9W)",
+    "category": "Electronics",
+    "tags": [
+      "led",
+      "energy efficient",
+      "bulb"
+    ],
+    "replaces": "60W Incandescent Bulb",
+    "materials": [
+      "Aluminum heat sink",
+      "Polycarbonate lens"
+    ],
+    "certifications": [
+      "ENERGY STAR"
+    ],
+    "impact": {
+      "co2": 6.0,
+      "water": 0,
+      "waste": 0
+    },
+    "score": 95,
+    "description": "Up to 85% less energy vs incandescent. Lasts 10x longer and reduces electricity bills.",
+    "links": [
+      {
+        "label": "Lighting guide",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "p006",
+    "name": "Solar Power Bank",
+    "category": "Electronics",
+    "tags": [
+      "solar",
+      "charger",
+      "usb-c"
+    ],
+    "replaces": "Grid-Only Power Banks",
+    "materials": [
+      "Lithium-ion",
+      "Monocrystalline panel"
+    ],
+    "certifications": [
+      "RoHS",
+      "CE"
+    ],
+    "impact": {
+      "co2": 1.5,
+      "water": 0,
+      "waste": 0
+    },
+    "score": 80,
+    "description": "Top up your devices with the sun. Great for commuting and travel to cut grid demand.",
+    "links": [
+      {
+        "label": "Charging tips",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "p007",
+    "name": "Recycled Notebook",
+    "category": "Stationery",
+    "tags": [
+      "recycled paper",
+      "notebook"
+    ],
+    "replaces": "Virgin Paper Notebook",
+    "materials": [
+      "100% post-consumer paper"
+    ],
+    "certifications": [
+      "FSC Recycled"
+    ],
+    "impact": {
+      "co2": 0.4,
+      "water": 200,
+      "waste": 10
+    },
+    "score": 78,
+    "description": "Made from 100% post-consumer waste paper with soy inks. Smooth pages, sturdy binding.",
+    "links": [
+      {
+        "label": "Paper grades 101",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "p008",
+    "name": "Laundry Strips",
+    "category": "Home",
+    "tags": [
+      "detergent",
+      "strips",
+      "plastic-free"
+    ],
+    "replaces": "Liquid Detergent in Plastic Jugs",
+    "materials": [
+      "Concentrated surfactants on PVOH"
+    ],
+    "certifications": [
+      "OECD Biodegradability"
+    ],
+    "impact": {
+      "co2": 0.9,
+      "water": 0,
+      "waste": 60
+    },
+    "score": 82,
+    "description": "Ultra-light strips replace heavy liquid jugs, reducing plastic and shipping emissions.",
+    "links": [
+      {
+        "label": "How to use",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "p009",
+    "name": "Reusable Water Bottle (Steel)",
+    "category": "Lifestyle",
+    "tags": [
+      "bottle",
+      "steel",
+      "reusable"
+    ],
+    "replaces": "Single-use Plastic Bottles",
+    "materials": [
+      "18/8 stainless steel"
+    ],
+    "certifications": [
+      "BPA-Free"
+    ],
+    "impact": {
+      "co2": 2.5,
+      "water": 0,
+      "waste": 500
+    },
+    "score": 92,
+    "description": "Double-wall insulated steel bottle keeps drinks cold/hot and eliminates disposables.",
+    "links": [
+      {
+        "label": "Cleaning tips",
+        "url": "#"
+      }
+    ]
+  },
+  {
+    "id": "p010",
+    "name": "Plant-Based Food Wraps",
+    "category": "Kitchen",
+    "tags": [
+      "wraps",
+      "beeswax alternative",
+      "vegan"
+    ],
+    "replaces": "Plastic Cling Film",
+    "materials": [
+      "Cotton",
+      "Candelilla wax",
+      "Jojoba oil",
+      "Tree resin"
+    ],
+    "certifications": [
+      "Vegan"
+    ],
+    "impact": {
+      "co2": 0.3,
+      "water": 0,
+      "waste": 50
+    },
+    "score": 76,
+    "description": "Reusable wraps that seal with the warmth of your hands. Washable and compostable at end of life.",
+    "links": [
+      {
+        "label": "Care & lifespan",
+        "url": "#"
+      }
+    ]
+  }
+]
