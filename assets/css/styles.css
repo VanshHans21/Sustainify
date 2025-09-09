@@ -349,7 +349,7 @@ option {
   border: 1px dashed var(--panel-strong);
   border-radius: var(--radius-lg);
 }
-
+   
 
 .input-field {
   padding: 10px 14px;
