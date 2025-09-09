@@ -363,7 +363,7 @@ option {
 }
 
 .input-field:focus {
-  border-color: rgba(124, 242, 199, 0.6);
+  border-color: rgba(124, 242, 199, 0.6); 
   box-shadow: 0 4px 12px rgba(124, 242, 199, 0.15);
   background-color: rgba(255, 255, 255, 0.05);
 }
