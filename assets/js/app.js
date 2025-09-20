@@ -1,16 +1,14 @@
 // Your complete new and updated JavaScript code
 
 const state = {
-    // Current state of the application
     query: "",
     category: "All",
     sort: "score-desc",
     onlyBookmarks: false,
     data: [],
     bookmarks: new Set(JSON.parse(localStorage.getItem("sustainify.bookmarks") || "[]")),
-    // Pagination settings
     currentPage: 1,
-    itemsPerPage: 6, // Number of items to show per page
+    itemsPerPage: 6,
 };
 
 const $ = (s, root = document) => root.querySelector(s);
@@ -33,13 +31,12 @@ function saveContributions(contributions) {
     localStorage.setItem("sustainify.contributions", JSON.stringify(contributions));
 }
 
-// Function to calculate a score for a new user contribution
 function calculateScore(item) {
-    let score = 50; // Base score
+    let score = 50;
     if (item.materials) score += item.materials.length * 5;
     if (item.certifications) score += item.certifications.length * 10;
     if (item.tags) score += item.tags.length * 2;
-    return Math.min(score, 100); // Score cannot exceed 100
+    return Math.min(score, 100);
 }
 
 // --- RENDERING LOGIC ---
@@ -50,11 +47,19 @@ function renderChips(categories) {
         const el = document.createElement("button");
         el.className = "chip";
         el.textContent = cat;
-        if (state.category === cat) el.classList.add("active");
+
+        if (state.category === cat) {
+            el.classList.add("active");
+        }
+
         el.addEventListener("click", () => {
             state.category = cat;
             state.currentPage = 1;
             render();
+
+            const allChips = $$("#chip-wrap .chip");
+            allChips.forEach(chip => chip.classList.remove("active"));
+            el.classList.add("active");
         });
         wrap.appendChild(el);
     });
@@ -64,7 +69,9 @@ function filterAndSort(items) {
     const q = state.query.trim().toLowerCase();
     let out = items.filter(p => {
         const matchesQuery = !q || [p.name, p.category, p.replaces, ...(p.tags || [])].join(" ").toLowerCase().includes(q);
-        const matchesCat = state.category === "All" || p.category === state.category;
+
+        // This is the key fix: comparing p.category with state.category
+        const matchesCat = (state.category === "All") || (p.category === state.category);
         const matchesBookmark = !state.onlyBookmarks || state.bookmarks.has(p.id);
         return matchesQuery && matchesCat && matchesBookmark;
     });
@@ -91,7 +98,10 @@ function renderCards(items) {
         card.className = "card fade-in";
         const isUserContribution = p.id.toString().startsWith('p');
 
+        const imageHtml = (p.image && typeof p.image === 'string' && p.image.length > 5) ? `<div class="card-image-wrap"><img src="${p.image}" alt="${p.name}"></div>` : '';
+
         card.innerHTML = `
+            ${imageHtml}
             <div class="badge-score">Score ${p.score}</div>
             <div class="content">
                 <div class="title">
@@ -123,9 +133,12 @@ function renderCards(items) {
 function renderPagination(totalItems) {
     const wrap = $("#pagination-wrap");
     wrap.innerHTML = "";
+
     const totalPages = Math.ceil(totalItems / state.itemsPerPage);
 
-    if (totalPages <= 1) return;
+    if (totalPages <= 1) {
+        return;
+    }
 
     for (let i = 1; i <= totalPages; i++) {
         const btn = document.createElement("button");
@@ -145,14 +158,14 @@ function renderPagination(totalItems) {
 function showModal(item) {
     const modal = $("#modal");
     const modalBody = $("#modal-body");
-    
+
+    modal.classList.add('show');
     modal.style.display = 'block';
-    modal.style.opacity = '1';
 
     modalBody.innerHTML = `
-        <h3 style="font-size: 24px; margin-bottom: 8px;">${item.name} <span class="badge-score" style="position: static; font-size: 14px; margin-left: 10px;">Score ${item.score}</span></h3>
-        <p style="color: var(--muted); margin-bottom: 20px;">${item.description}</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+        <h3 class="title">${item.name} <span class="badge-score" style="position: static; font-size: 14px; margin-left: 10px;">Score ${item.score}</span></h3>
+        <p class="desc">${item.description}</p>
+        <div class="modal-details">
             <div>
                 <p style="font-weight: bold; color: var(--text);">Category:</p>
                 <p>${item.category}</p>
@@ -171,18 +184,17 @@ function showModal(item) {
             </div>
         </div>
         <div class="pills" style="margin-top: 20px;">
-            ${(item.tags || []).map(tag => `<span class="pill">${tag}</span>`).join('')}
+            ${(item.tags || []).map(tag => `<span class="pill">#${tag}</span>`).join('')}
         </div>
     `;
 }
 
 function hideModal() {
     const modal = $("#modal");
-    const modalBody = $("#modal-body");
-    modal.style.opacity = '0';
+    modal.classList.remove('show');
     setTimeout(() => {
         modal.style.display = 'none';
-        modalBody.innerHTML = '';
+        $("#modal-body").innerHTML = '';
     }, 300);
 }
 
@@ -254,6 +266,7 @@ function attachEvents() {
         const newIdea = {
             id: `p${Date.now()}`,
             name: $("#c_name", form).value.trim(),
+            image: $("#c_image", form).value.trim(),
             category: $("#c_category", form).value.trim(),
             replaces: $("#c_replaces", form).value.trim(),
             tags: $("#c_tags", form).value.split(",").map(t => t.trim()).filter(Boolean),
@@ -274,24 +287,30 @@ function attachEvents() {
     });
 }
 
+// THIS IS THE FINAL CORRECTED INIT FUNCTION
 async function init() {
     try {
         const res = await fetch("assets/data/products.json");
-        const productsFromJson = await res.json();
+        let productsFromJson = [];
+        if (res.ok) {
+            productsFromJson = await res.json();
+        } else {
+            console.warn("Failed to load products.json. The file might be missing or there was a network error.");
+        }
+
         const contributions = loadContributions();
-        // The core data is a combination of user contributions and the initial JSON data.
-        state.data = [...contributions, ...productsFromJson];
+
+        // This is the key fix: clear the data and reload it completely
+        state.data = [];
+        state.data = [...productsFromJson, ...contributions];
+
         const categories = [...new Set(state.data.map(p => p.category).filter(Boolean))].sort();
         renderChips(categories);
-        attachEvents();
-        render();
+        console.log("Products loaded successfully. Total products:", state.data.length);
+
     } catch (error) {
-        console.error("Failed to initialize app:", error);
-        // Fallback to only show user contributions if JSON fetch fails.
-        const contributions = loadContributions();
-        state.data = contributions;
-        const categories = [...new Set(state.data.map(p => p.category).filter(Boolean))].sort();
-        renderChips(categories);
+        console.error("An unexpected error occurred during data loading:", error);
+    } finally {
         attachEvents();
         render();
     }
@@ -299,7 +318,6 @@ async function init() {
 
 document.addEventListener("DOMContentLoaded", init);
 
-// Close modal on escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && $("#modal").style.display === 'block') {
         hideModal();
